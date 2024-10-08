@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../core/utils/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.labelText, required this.hintText, this.isObscureText, this.suffixIcon, this.hintStyle, this.controller, required this.validator});
+   const CustomTextField({super.key, required this.labelText, required this.hintText, this.isObscureText, this.suffixIcon, this.hintStyle, this.controller, this.onSaved});
   final String labelText;
   final String hintText;
   final TextStyle? hintStyle;
   final bool? isObscureText;
   final Widget? suffixIcon;
   final TextEditingController? controller;
-  final Function(String?) validator;
+  //final Function(String?) validator;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -45,9 +46,12 @@ class CustomTextField extends StatelessWidget {
       obscureText: isObscureText ?? false,
       controller: controller,
       validator: (value){
-        return validator(value);
+        if (value == null || value.isEmpty) {
+          return 'Please enter $labelText';
+        }
+        return null;
       },
-
+       onSaved: onSaved,
     );
   }
 }

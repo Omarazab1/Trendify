@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:trendify/core/widgets/custom_button.dart';
+import 'package:trendify/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
 import 'package:trendify/features/auth/presentation/views/login_view.dart';
 import 'package:trendify/features/auth/widgets/custom_text_field.dart';
 import 'package:trendify/features/auth/widgets/join_or_not_join_text.dart';
 import 'package:trendify/features/auth/widgets/title_and_subtitle.dart';
-import 'custom_snack_bar.dart';
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
   @override
@@ -20,6 +21,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  late String name , email , password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,106 +31,87 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: FadeInUp(
           delay: const Duration(milliseconds: 500),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                SizedBox(height: 60.h,),
-                const TitleAndSubtitle(title: 'Sign Up',
-                  subtitle: 'Join us today! Fill in your details below.',),
-                SizedBox(height: 40.h,),
-                CustomTextField(
-                  controller: nameController,
-                  labelText: 'Name', hintText: 'Enter Your Name',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },),
-                SizedBox(height: 20.h,),
-                CustomTextField(
-                  labelText: 'Email', hintText: 'Enter Your Email',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return 'Enter a valid email';
-                    }
-                    return null;
-                  },),
-                SizedBox(height: 20.h,),
-                CustomTextField(
-                  controller: passwordController,
-                  isObscureText: isObscureText,
-                  labelText: 'Password',
-                  hintText: 'Enter Your Password',
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      isObscureText = !isObscureText;
-                      setState(() {});
+          child: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              autovalidateMode: autovalidateMode,
+              child: Column(
+                children: [
+                  SizedBox(height: 60.h,),
+                  const TitleAndSubtitle(title: 'Sign Up',
+                    subtitle: 'Join us today! Fill in your details below.',),
+                  SizedBox(height: 40.h,),
+                  CustomTextField(
+                    onSaved: (value){
+                      name = value!;
                     },
-                    child: isObscureText ? const Icon(
-                        Icons.visibility_off_outlined) :
-                    const Icon(Icons.visibility_outlined),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20.h,),
-                CustomTextField(
-                  controller: confirmPasswordController,
-                  isObscureText: isObscureText,
-                  labelText: 'Confirm Password',
-                  hintText: 'Confirm Your Password',
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      isObscureText = !isObscureText;
-                      setState(() {});
+                    controller: nameController,
+                    labelText: 'Name', hintText: 'Enter Your Name',
+                    ),
+                  SizedBox(height: 20.h,),
+                   CustomTextField(
+                     onSaved: (value){
+                       email = value!;
+                     },
+                    controller: emailController,
+                    labelText: 'Email', hintText: 'Enter Your Email',
+                    ),
+                  SizedBox(height: 20.h,),
+                  CustomTextField(
+                    onSaved: (value){
+                      password = value!;
                     },
-                    child: isObscureText ? const Icon(
-                        Icons.visibility_off_outlined) :
-                    const Icon(Icons.visibility_outlined),
+                    controller: passwordController,
+                    isObscureText: isObscureText,
+                    labelText: 'Password',
+                    hintText: 'Enter Your Password',
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        isObscureText = !isObscureText;
+                        setState(() {});
+                      },
+                      child: isObscureText ? const Icon(
+                          Icons.visibility_off_outlined) :
+                      const Icon(Icons.visibility_outlined),
+                    ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please confirm your password';
-                    }
-                    if (value != passwordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 50.h,),
-                CustomButton(
-                  buttonText: 'Register',
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      SnackBar snackBar = buildSnackBar(
-                          message: 'registered successfully');
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    } else {
-                      SnackBar snackBar = buildSnackBar(
-                          message: 'Please fill in all fields');
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }},
-                ),
-                SizedBox(height: 12.h,),
-                JoinOrNotJoinText(
-                  text: ' Already Joined us? ',
-                  text2: 'Sign In', onTap: () {
-                  Navigator.pushNamed(context, LoginView.routeName);
-                },),
-              ],
+                  SizedBox(height: 20.h,),
+                  CustomTextField(
+                    controller: confirmPasswordController,
+                    isObscureText: isObscureText,
+                    labelText: 'Confirm Password',
+                    hintText: 'Confirm Your Password',
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        isObscureText = !isObscureText;
+                        setState(() {});
+                      },
+                      child: isObscureText ? const Icon(
+                          Icons.visibility_off_outlined) :
+                      const Icon(Icons.visibility_outlined),
+                    ),
+                  ),
+                  SizedBox(height: 50.h,),
+                  CustomButton(
+                    buttonText: 'Register',
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        context.read<RegisterCubit>().createUserWithEmailAndPassword(email, password, name);
+                      } else {
+                        setState(() {
+                        });
+                        autovalidateMode = AutovalidateMode.always;
+                      }},
+                  ),
+                  SizedBox(height: 12.h,),
+                  JoinOrNotJoinText(
+                    text: ' Already Joined us? ',
+                    text2: 'Sign In', onTap: () {
+                    Navigator.pushNamed(context, LoginView.routeName);
+                  },),
+                ],
+              ),
             ),
           ),
         ),
