@@ -1,4 +1,4 @@
-import 'package:device_preview/device_preview.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/helper/on_generate_route.dart';
@@ -7,13 +7,7 @@ import 'features/splash/presentation/views/splash_view.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    DevicePreview(
-        builder: (context) => const Trendify(),
-        enabled: true,
-        tools: const [
-          ...DevicePreview.defaultTools
-        ],
-    )
+    const Trendify(),
   );
 
 }

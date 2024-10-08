@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trendify/features/splash/presentation/views/widgets/sliding_text.dart';
-
 import '../../../../auth/presentation/views/login_view.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -28,6 +27,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void dispose() {
+    animationController.dispose();
     super.dispose();
   }
 
