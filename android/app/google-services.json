@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "373560954146",
+    "project_id": "trendify-3f56b",
+    "storage_bucket": "trendify-3f56b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373560954146:android:21c3b325cdf201414f297b",
+        "android_client_info": {
+          "package_name": "com.examp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCmZe3h_29x8TKnZshSdyJGOxK8T3vtOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
