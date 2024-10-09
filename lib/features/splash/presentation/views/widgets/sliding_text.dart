@@ -16,7 +16,7 @@ class SlidingText extends StatelessWidget {
       {
         return SlideTransition(
           position: slidingAnimation,
-          child: const Text('Every purchase tells a story',
+          child: const Text('Find Your Style, Tech, and Shine',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
@@ -29,3 +29,4 @@ class SlidingText extends StatelessWidget {
     );
   }
 }
+//Every purchase tells a story

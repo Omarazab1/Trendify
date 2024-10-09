@@ -37,10 +37,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               autovalidateMode: autovalidateMode,
               child: Column(
                 children: [
-                  SizedBox(height: 60.h,),
+                  SizedBox(height: 50.h,),
                   const TitleAndSubtitle(title: 'Sign Up',
                     subtitle: 'Join us today! Fill in your details below.',),
-                  SizedBox(height: 40.h,),
+                  SizedBox(height: 5.h,),
+                  Image.asset('assets/images/regsiterimg.png'),
+                  SizedBox(height: 15.h,),
                   CustomTextField(
                     onSaved: (value){
                       name = value!;
@@ -48,7 +50,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     controller: nameController,
                     labelText: 'Name', hintText: 'Enter Your Name',
                     ),
-                  SizedBox(height: 20.h,),
+                  SizedBox(height: 15.h,),
                    CustomTextField(
                      onSaved: (value){
                        email = value!;
@@ -56,7 +58,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     controller: emailController,
                     labelText: 'Email', hintText: 'Enter Your Email',
                     ),
-                  SizedBox(height: 20.h,),
+                  SizedBox(height: 15.h,),
                   CustomTextField(
                     onSaved: (value){
                       password = value!;
@@ -75,7 +77,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       const Icon(Icons.visibility_outlined),
                     ),
                   ),
-                  SizedBox(height: 20.h,),
+                  SizedBox(height: 15.h,),
                   CustomTextField(
                     controller: confirmPasswordController,
                     isObscureText: isObscureText,
@@ -91,7 +93,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       const Icon(Icons.visibility_outlined),
                     ),
                   ),
-                  SizedBox(height: 50.h,),
+                  SizedBox(height: 35.h,),
                   CustomButton(
                     buttonText: 'Register',
                     onPressed: () {
@@ -110,6 +112,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     text2: 'Sign In', onTap: () {
                     Navigator.pushNamed(context, LoginView.routeName);
                   },),
+                  SizedBox(height: 10.h,),
                 ],
               ),
             ),

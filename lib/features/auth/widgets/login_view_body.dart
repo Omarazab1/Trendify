@@ -37,9 +37,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               key:  formKey,
               autovalidateMode: autovalidateMode,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 60.h,),
+                  SizedBox(height: 50.h,),
                   const TitleAndSubtitle(title: 'Sign In', subtitle: 'Welcome back! Please log in to continue.',),
+                  SizedBox(height: 20.h,),
+                  Image.asset('assets/images/loginimg.png'),
                   SizedBox(height: 40.h,),
                    CustomTextField(
                      onSaved: (value){
@@ -87,7 +90,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   SizedBox(height: 12.h,),
                    JoinOrNotJoinText(
                      text: 'Don\'t have an account?',
-                     text2: 'SignUp',onTap: (){
+                     text2: 'Sign Up',onTap: (){
                        Navigator.pushNamed(context, RegisterView.routeName);
                    },),
                 ],
