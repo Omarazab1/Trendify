@@ -18,4 +18,9 @@ class AppStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.kGreyColor,
   );
+  static TextStyle cardTitle = const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.kPrimaryColor,
+  );
 }

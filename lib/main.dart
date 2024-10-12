@@ -1,12 +1,13 @@
 
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trendify/core/di/injection.dart';
+import 'package:trendify/features/splash/presentation/views/splash_view.dart';
 import 'core/helper/on_generate_route.dart';
 import 'core/service/custom_bloc_observer.dart';
-import 'features/splash/presentation/views/splash_view.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -18,7 +19,12 @@ void main() async{
   setupGetIt();
 
   runApp(
-    const Trendify(),
+    DevicePreview(
+        enabled: true,
+        builder: (context) => const Trendify()),
+
+
+        //child:
   );
 
 }
@@ -36,6 +42,7 @@ class Trendify extends StatelessWidget {
         debugShowCheckedModeBanner: false,
          onGenerateRoute: onGenerateRoute,
          initialRoute: SplashView.routeName,
+         //initialRoute: SplashView.routeName,
       ),
     );
   }

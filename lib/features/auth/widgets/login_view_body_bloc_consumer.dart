@@ -17,7 +17,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccess) {}
         if (state is LoginError) {
-          buildErrorBar(context, state.message);
+          buildSnackBar(context, state.message);
         }
       },
       builder: (context, state) {
