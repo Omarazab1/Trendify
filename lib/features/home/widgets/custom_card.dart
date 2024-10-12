@@ -46,26 +46,6 @@ class CustomProductCard extends StatelessWidget {
                       style: AppStyles.cardTitle,
                     ),
                     SizedBox(height: 3.h,),
-                     const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '100\$',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.kPrimaryColor,
-                          ),
-                        ),
-                        Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
                     RatingBar.builder(
                       initialRating: 4,
                       minRating: 1,
@@ -81,6 +61,26 @@ class CustomProductCard extends StatelessWidget {
                       },
                       onRatingUpdate: (index){
                       },
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '100\$',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.kPrimaryColor,
+                          ),
+                        ),
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
+                      ],
                     ),
                   ],
                 ),
