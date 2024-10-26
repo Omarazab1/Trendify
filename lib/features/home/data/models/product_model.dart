@@ -1,3 +1,7 @@
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'product_model.g.dart';
+@JsonSerializable()
 class ProductModel {
   final dynamic id;
   final String title;
@@ -15,27 +19,16 @@ class ProductModel {
         required this.image,
         required this.rating});
 
-  factory ProductModel.fromJson(jsonData) {
-    return ProductModel(
-        id:jsonData['id'],
-        title: jsonData['title'],
-        category: jsonData['category'],
-        price: jsonData['price'],
-        description: jsonData['description'],
-        image: jsonData['image'],
-        rating: jsonData['rating'] == null
-            ? null
-            : RatingModel.fromJson(jsonData['rating']));
-  }
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
 }
-
+@JsonSerializable()
 class RatingModel {
   final dynamic rate;
   final int count;
 
   RatingModel({required this.rate, required this.count});
 
-  factory RatingModel.fromJson(jsonData) {
-    return RatingModel(rate: jsonData['rate'], count: jsonData['count']);
-  }
+  factory RatingModel.fromJson(Map<String, dynamic> json) =>
+      _$RatingModelFromJson(json);
 }

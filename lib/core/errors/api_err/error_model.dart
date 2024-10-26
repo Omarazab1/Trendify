@@ -1,4 +1,4 @@
-// import 'package:simpleapp/core/api/endpoints.dart';
+// import 'package:simpleapp/core/api/api_constants.dart';
 //
 // class ErrorModel {
 //   final String status;

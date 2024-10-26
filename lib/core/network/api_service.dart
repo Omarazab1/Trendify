@@ -1,27 +1,17 @@
-abstract class ApiService {
-  Future<dynamic> get(
-      String path,
-      {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        bool isFormData = false,
-      });
 
-  Future<dynamic> post(String path,
-      {dynamic data,
-        Map<String, dynamic>? queryParameters,
-        bool isFormData = false,
-      });
+import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
+import 'package:trendify/features/home/data/models/product_model.dart';
+import 'api_constants.dart';
 
-  Future<dynamic> patch(String path,
-      {dynamic data,
-        Map<String, dynamic>? queryParameters,
-        bool isFormData = false,
-      });
+part 'api_service.g.dart';
 
-  Future<dynamic> delete(String path,
-      {dynamic data,
-        Map<String, dynamic>? queryParameters,
-        bool isFormData = false,
-      });
+@RestApi(baseUrl: ApiConstants.baseUrl)
+abstract class ApiService{
+
+  factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
+
+  @GET(ApiConstants.getAllProducts)
+  Future<ProductModel> getAllProducts();
+
 }
